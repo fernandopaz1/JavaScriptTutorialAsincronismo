@@ -10,7 +10,9 @@ console.log("Hola");
 // usando promesas
 
 let promesa = request("https://www.google.com");
+// Las operaciones asincronas devuelven objetos de tipo Promesa
 // en este caso la request devuelve una promesa
+
 console.log(typeof promesa);
 promesa.then(() => console.log("Termine la peticion2")); // ejecuta la funcion una vez que se cumple la promesa
 promesa.catch((err) => console.log(err)); // si ocurre un error lo atrapamos con el catch e imprimos el error
@@ -26,3 +28,6 @@ rejected (rechazada): la promesa no se completo con exito
 pending (pendiente): es cuando la operacion todavia no termino promesa no cumplida
 settled (finalizada): cuando la promesa termino con exito o con error 
 */
+
+promesa.finally(() => console.log("Mesaje final de la promesa2"));
+// con finally esta se ejecuta siempre sin importar si se completo, dio error o fue rechazada
