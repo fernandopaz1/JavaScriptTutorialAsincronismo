@@ -42,3 +42,20 @@ async function showGithubInfo() {
     console.log(repos);
 }
 showGithubInfo();
+
+// Como manejar errores de promesas con async y await
+// si usamos el await no podemos usar catch
+// lo podemos hacer con bloques try-catch
+
+async function showGithubInfoConError() {
+    try {
+        let response = await fetch(
+            "https://api.github.com/users/fernandopaz1/repos"
+        ); // esto seria una promesa pero con await se transforma en el valor de la promesa
+        let repos = await response.json(); // pasaar a json devuelve tambien promesa pero el await me lo convierte a json
+        console.log(repos);
+    } catch (error) {
+        // todos los posibles errores del bloque try van a parar a este catch
+        console.log(error);
+    }
+}
