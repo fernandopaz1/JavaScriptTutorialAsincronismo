@@ -26,3 +26,29 @@ Promise.all([p1, p2])
 //Por ejemplo Si tenemos muchas peritciones para construir una vista
 // podemos poner todas esas promesas en Promise.all para resolver la vista
 // una vez que se hayan cumplido todas las peticiones
+
+// Que pasa si necesitamos que termine una para procesar la siguiente
+
+// let p3 = new Promise((res, rej) => setTimeout(res, 500, "Tercer Hola mundo"));
+
+// let p4 = new Promise((res, rej) => setTimeout(res, 500, "Cuarto hola mundo"));
+
+// para esto las funciones a encadenar deber retornar promesas
+
+function tercerPromesa() {
+    return new Promise((res, rej) => setTimeout(res, 600, "Tercer hola mundo"));
+}
+function cuartaPromesa() {
+    return new Promise((res, rej) => setTimeout(res, 400, "Cuarto hola mundo"));
+}
+
+tercerPromesa()
+    .then((r) => console.log(r))
+    .then(cuartaPromesa)
+    .then((r) => console.log(r));
+
+// podemos encadenar todas las operaciones que querramos siempre y cuando
+// las funciones retornen una promesa
+
+// si la funcion de la cuarta promesa recibe un parametro toma como parametro en
+// el resultado de la operacion anterior
