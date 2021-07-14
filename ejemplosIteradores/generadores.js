@@ -17,4 +17,21 @@ function* counter(){
 }
 
 // las funciones generadoras siempre retornan generadores
+// 
 let generator = counter(); 
+
+console.log(generator.next())
+console.log(generator.next())
+console.log(generator.next())  // como hay 2 yields este ultimo ya devuelve done = true y no tiene value
+
+// las arrow functions no pueden ser usadas como generadores
+// parece que habria un error sintactico en ecmascript en caso de que quisieran implementarlo
+
+function* generarHasta5(){
+    for(var i = 1 ; i <= 5; i++){
+        yield i; 
+        console.log(i)  // esto es analogo a generadores       
+    }
+}
+let gen = generarHasta5()
+while(!gen.next().done){}
